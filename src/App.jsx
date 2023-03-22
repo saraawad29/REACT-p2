@@ -2,9 +2,23 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
-
+import { database } from './firebase';
 function App() {
   const [count, setCount] = useState(0)
+
+  const createDocument = async (collectionName, documentData)=> {
+    try {
+      const docRef = await addDoc(collection(database, collectionName), documentData );
+
+      console.log("Document Ref written: ", docRef);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    
+  }
+
+
 
   return (
     <div className=" ">
